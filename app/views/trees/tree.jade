@@ -1,0 +1,7 @@
+.tree(data-id=tree._id.toString(), class=tree.getClasses())
+  .height= tree.height
+  .controls
+    if(tree.isHealthy)
+      a.grow(href='#', class='button button-rounded button-flat') Grow
+    if(!tree.isChopped && tree.isHealthy && tree.height >= 24)
+      a.chop(href='#', class='button button-rounded button-flat-caution') Chop
