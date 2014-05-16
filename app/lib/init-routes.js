@@ -29,7 +29,9 @@ function load(app, fn){
   app.get('/trees', dbg, trees.forest);
   app.put('/trees/:treeId/grow', dbg, trees.grow);
   app.put('/trees/:treeId/chop', dbg, trees.chop);
-//  app.get('/users/:userId', dbg, users.dashboard);
+  app.put('/users/:userId/sellwood', dbg, users.sellWood);
+  app.get('/users/:userId', dbg, users.dashboard);
+  app.put('/users/:userId/purchase/autogrow', dbg, users.autogrow);
 
   console.log('Routes Loaded');
   fn();

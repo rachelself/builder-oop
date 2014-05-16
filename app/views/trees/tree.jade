@@ -1,7 +1,8 @@
 .tree(data-id=tree._id.toString(), class=tree.getClasses())
-  .height= tree.height
+  if(tree.isGrowable || tree.isBeanStalk)
+    .height #{Math.floor((tree.height/12)).toFixed(0)}' #{(tree.height%12).toFixed(0)}"
   .controls
-    if(tree.isHealthy)
+    if(tree.isGrowable)
       a.grow(href='#', class='button button-rounded button-flat') Grow
-    if(!tree.isChopped && tree.isHealthy && tree.height >= 24)
+    if(tree.isChoppable)
       a.chop(href='#', class='button button-rounded button-flat-caution') Chop

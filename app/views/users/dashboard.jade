@@ -1,9 +1,26 @@
 #user(data-id=user._id.toString())= user.username
   #wood-balance
     h6 Wood Balance:
-    #wood= user.wood
+    #wood= user.wood.toFixed(2)
   #cash-balance
     h6 Cash Balance:
-    #cash= user.cash
+    #cash= user.cash.toFixed(2)
+  #sell-wood
+    h6 Sell Wood
+    input#wood-amount(type='text', name='amount', placeholder='how much?')
+    a#sell(href='#', class='button button-rounded button-flat-action') Sell Wood
+  #badges
+    if(user.isEligibleForAutoGrow)
+      a(href='#'): img.autogrow
+#items
+  if(user.items.length > 0)
+    a(href='#'): img.autoGrowing
+
+  //- #badges
+  //-   if(user.cash >= 50000)
+  //-     a(href='#'): img.autogrow
+
+
+
 a#plant(href='#', class='button button-rounded button-flat-action') Plant Seed
 a#getforest(href='#' class='button button-rounded button-flat-primary') Get Forest

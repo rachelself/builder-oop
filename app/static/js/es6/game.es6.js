@@ -12,17 +12,49 @@
     $('#dashboard').on('click', '#getforest', forest);
     $('#forest').on('click', '.grow', grow);
     $('#forest').on('click', '.chop', chop);
+    $('#dashboard').on('click', '#sell', sellWood);
+    $('#dashboard').on('click', '.autogrow', purchaseAutoGrow);
+    preloadAssets();
+  }
+
+  function purchaseAutoGrow()
+  {
+    var userId = $('#user').attr('data-id');
+    ajax(`/users/${userId}/purchase/autogrow`, 'put', null, h=>{
+      $('#dashboard').empty().append(h);
+    });
+
+  }
+
+  var audioChop, audioBeanStalk;
+
+  function preloadAssets()
+  {
+    audioChop = $('<audio>')[0];
+    audioChop.src = '/audios/chop.mp3';
+    audioBeanStalk = $('<audio>')[0];
+    audioBeanStalk.src = '/audios/beanstalk.mp3';
+  }
+
+  function sellWood()
+  {
+    var userId = $('#user').attr('data-id');
+    var amount = $('#wood-amount').val();
+    ajax(`/users/${userId}/sellwood`, 'put', {amount:amount}, h=>{
+      $('#dashboard').empty().append(h);
+    });
   }
 
   function chop(){
+    audioChop.play();
     var tree = $(this).closest('.tree');
     var treeId = tree.attr('data-id');
-    ajax(`/trees/${treeId}/chop`, 'put', null, h =>{
+    ajax(`/trees/${treeId}/chop`, 'put', null, h => {
       // console.log(r.tree);
       // console.log(r.user);
 
       tree.replaceWith(h);
-      //dashboard();
+      dashboard();
       //checkClass(treeId);
 
     });
@@ -30,10 +62,10 @@
 
   function dashboard()
   {
-    // var userId = $('#user').attr('data-id');
-    //   ajax(`/users/${userId}`, 'get');
-      // $('#dashboard').empty().append(h);
-
+    var userId = $('#user').attr('data-id');
+      ajax(`/users/${userId}`, 'get', null, h=>{
+        $('#dashboard').empty().append(h);
+      });
   }
 
   function grow(){
@@ -41,6 +73,9 @@
     var treeId = tree.attr('data-id');
     ajax(`/trees/${treeId}/grow`, 'put', null, h => {
       tree.replaceWith(h);
+      if($(h).hasClass('beanstalk')){
+        audioBeanStalk.play();
+      }
     //  checkClass(treeId);
     });
   }
@@ -70,7 +105,8 @@
     ajax('/login', 'post', {username:username}, h =>{
       $('#dashboard').empty().append(h);
       $('#cash').prepend('$');
-      $('#user').prepend('USER:   ');
+      $('#username').val('');
+      // $('#user').prepend('USER:   ');
     });
   }
 
