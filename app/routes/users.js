@@ -29,15 +29,13 @@ exports.dashboard = (req, res)=>{
   });
 };
 
-exports.autogrow = (req, res)=>{
+exports.purchase = (req, res)=>{
   User.findByUserId(req.params.userId, user=>{
-    var autogrow = new Item('autogrow');
-    autogrow.save(()=>{
-      user.purchase(autogrow);
-      user.save(()=>{
-        res.render('users/dashboard', {user:user});
+    var item = new Item(req.params.item);
+    user.purchase(item);
+    user.save(()=>{
+      res.render('users/dashboard', {user:user});
       });
-    });
   });
 };
 

@@ -1,3 +1,20 @@
+var audioChop,
+    audioBeanStalk;
+function ajax(url, type) {
+  'use strict';
+  var data = arguments[2] !== (void 0) ? arguments[2] : {};
+  var success = arguments[3] !== (void 0) ? arguments[3] : (function(r) {
+    return console.log(r);
+  });
+  var dataType = arguments[4] !== (void 0) ? arguments[4] : 'html';
+  $.ajax({
+    url: url,
+    type: type,
+    dataType: dataType,
+    data: data,
+    success: success
+  });
+}
 (function() {
   'use strict';
   $(document).ready(init);
@@ -12,13 +29,11 @@
     preloadAssets();
   }
   function purchaseAutoGrow() {
-    var userId = $('#user').attr('data-id');
+    var userId = $('#user > p').attr('data-id');
     ajax(("/users/" + userId + "/purchase/autogrow"), 'put', null, (function(h) {
       $('#dashboard').empty().append(h);
     }));
   }
-  var audioChop,
-      audioBeanStalk;
   function preloadAssets() {
     audioChop = $('<audio>')[0];
     audioChop.src = '/audios/chop.mp3';
@@ -26,7 +41,7 @@
     audioBeanStalk.src = '/audios/beanstalk.mp3';
   }
   function sellWood() {
-    var userId = $('#user').attr('data-id');
+    var userId = $('#user > p').attr('data-id');
     var amount = $('#wood-amount').val();
     ajax(("/users/" + userId + "/sellwood"), 'put', {amount: amount}, (function(h) {
       $('#dashboard').empty().append(h);
@@ -42,7 +57,7 @@
     }));
   }
   function dashboard() {
-    var userId = $('#user').attr('data-id');
+    var userId = $('#user > p').attr('data-id');
     ajax(("/users/" + userId), 'get', null, (function(h) {
       $('#dashboard').empty().append(h);
     }));
@@ -58,7 +73,7 @@
     }));
   }
   function forest() {
-    var userId = $('#user').attr('data-id');
+    var userId = $('#user > p').attr('data-id');
     ajax(("/trees?userId=" + userId), 'get', null, (function(h) {
       $('#forest').empty().append(h);
     }));
@@ -71,22 +86,8 @@
       $('#username').val('');
     }));
   }
-  function ajax(url, type) {
-    var data = arguments[2] !== (void 0) ? arguments[2] : {};
-    var success = arguments[3] !== (void 0) ? arguments[3] : (function(r) {
-      return console.log(r);
-    });
-    var dataType = arguments[4] !== (void 0) ? arguments[4] : 'html';
-    $.ajax({
-      url: url,
-      type: type,
-      dataType: dataType,
-      data: data,
-      success: success
-    });
-  }
   function plant() {
-    var userId = $('#user').attr('data-id');
+    var userId = $('#user > p').attr('data-id');
     ajax('/trees/plant', 'post', {userId: userId}, (function(h) {
       $('#forest').append(h);
     }));

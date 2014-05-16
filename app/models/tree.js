@@ -58,7 +58,7 @@ class Tree{
 
     console.log(200);
     console.log(min);
-    //this.isHealthy = _.random(0, min, true) > 1;
+    this.isHealthy = _.random(0, min, true) > 1;
     this.height += _.random(0, maxHeight, true);
   }
 
@@ -66,16 +66,21 @@ class Tree{
     trees.save(this, ()=>fn());
   }
 
-  getClasses(){
+  get classes(){
     var classes = [];
     if(this.height === 0 && this.isHealthy){
       classes.push('seed');
+
     }else if(this.height < 24){
       classes.push('sapling');
     }else if(!this.isAdult){
       classes.push('treenager');
     }else{
       classes.push('adult');
+    }
+
+    if(this.isHealthy){
+      classes.push('alive');
     }
 
     if(!this.isHealthy){

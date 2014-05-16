@@ -18,7 +18,7 @@ body{
   margin-top: 10px;
   padding: 10px;
   position: relative;
-  top: 20px;
+  top: 60px;
 }
 
 #controls{
@@ -30,13 +30,6 @@ body{
   width: 100%;
   padding: 10px;
 
-}
-
-#username{
-  border-radius: 5px;
-  border: none;
-  padding: 3px 5px;
-  color: orange;
 }
 
 #controls input, #controls #login{
@@ -63,65 +56,15 @@ h6{
 }
 
 #dashboard{
-  background-color: rgba(0, 0, 0, 0.7);
-  width: 100%;
-  height: 100px;
-  padding: 20px;
-  display: inline-block;
-}
-
-#plant, #wood, #user, #getforest, #cash{
-  // position: relative;
-  // top: 20px;
-  // left: 10px;
-  float: left;
-  margin-left: 20px;
-  z-index:5;
-  display: inline-block;
-}
-
-#plant, #getforest{
-  margin-right: 10px;
   position: relative;
-  //top: 0px;
-  left: 400px;
-}
+  top: 0px;
 
-#sell{
-  margin-left: 10px;
+  // background-color: rgba(0, 0, 0, 0.7);
+  // width: 100%;
+  // height: 100px;
+  // padding: 20px;
+  // display: inline-block;
 }
-
-#wood-balance, #cash-balance{
-  display: inline-block;
-  margin-right: 20px;
-  position: relative;
-  top: 20px;
-  left: 50px;
-}
-
-#sell-wood{
-  position: relative;
-  top: 30px;
-  left: 350px;
-  display: inline-block;
-}
-
-#wood-amount{
-  border-radius: 5px;
-  border: 0;
-  padding: 3px;
-  color: orange;
-}
-
-#wood, #user, #cash{
-  color: white;
-  display: inline-block;
-}
-
-#sell-wood input{
-  color: black;
-}
-
 
 #user{
   //display: block;
@@ -131,6 +74,103 @@ h6{
   width: 100%;
 
 }
+
+#username{
+  border-radius: 3px;
+  border: none;
+  padding: 3px 8px;
+  color: orange;
+  height: 27px;
+  width: 100px;
+}
+
+#user *{
+  float: left;
+  display: inline-block;
+  position: relative;
+  top: 10px;
+  left: 100px;
+  z-index: 5;
+  margin-right: 10px;
+  vertical-align: top;
+}
+
+#user p{
+  color: orange;
+  position: absolute;
+  top: 18px;
+  left: 350px;
+}
+
+#wood-balance{
+  margin-left: 30px;
+}
+
+#wood-balance, #cash-balance, #plant, #getforest{
+  margin-left: 15px;
+  position: relative;
+  top: 10px;
+  left: 320px;
+
+  // float: left;
+
+  // z-index:5;
+  // display: inline-block;
+}
+
+#wood, #cash{
+  display: block
+}
+
+#plant, #getforest, #sell, #login{
+  width: 80px;
+  text-transform: capitalize;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#plant{
+  position: absolute;
+  left: 1160px;
+}
+
+#getforest{
+  position: absolute;
+  left: 1260px;
+}
+
+#sell{
+  position: relative;
+  top: 0px;
+}
+
+
+#sell-wood{
+  position: absolute;
+  left: 770px;
+
+}
+
+#wood-amount{
+  border-radius: 3px;
+  border: 0;
+  padding: 3px 8px;
+  color: orange;
+  width: 100px;
+  height: 27px;
+  position: relative;
+  top: 0px;
+}
+
+#wood, #user, #cash{
+  color: white;
+}
+
+#sell-wood input{
+  color: black;
+}
+
+
 
 .tree{
   background-color: rgba(255, 255, 255, 0.5);
@@ -223,6 +263,48 @@ h6{
   margin: 0 auto;
 }
 
+#items{
+
+  border: none;
+  border: 0;
+  position: relative;
+  top: 52px;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 80px;
+  // padding: 20px;
+  // display: inline-block;
+
+  //width: 100px;
+  //height: 64px;
+  //position: relative;
+  //top: -40px;
+  //left: 20px;
+//  border: none;
+
+}
+
+.item{
+  background-size: cover;
+  width: 100px;
+  height: 64px;
+  vertical-align: center;
+  border: none;
+  border: 0;
+  text-decoration: none;
+  float: left;
+  margin: 10px;
+  position: relative;
+  left: -400px;
+  top: -5px;
+}
+
+// #items a{
+//   text-decoration: none;
+//
+// }
+
 .autogrow{
   background-image: url(/img/autogrow-2.png);
   background-size: cover;
@@ -235,26 +317,31 @@ h6{
 #badges{
   width: 32px;
   height: 32px;
-  // position: relative;
-  // top: 30px;
-  // left: 30px;
+  position: absolute;
+  top: 70px;
+  left: 0px;
+  z-index: 2;
 }
 
-#items{
-  width: 100px;
-  height: 64px;
-  position: relative;
-  top: -40px;
-  left: 20px;
-  border: none;
-
-}
-
-.autoGrowing{
+#autoGrowing{
   background-image: url(/img/antplant.gif);
   background-size: cover;
-  width: 100%;
+  width: 100px;
   height: 64px;
   vertical-align: center;
   border: none;
+  border: 0;
+  text-decoration: none;
+  float: left;
+  margin: 10px;
+  cursor: pointer;
+  position: relative;
+  left: -200px;
+  top: -5px;
+  padding: 2px;
+}
+
+.on{
+  border: 1px solid orange !important;
+  background-color: rgba(255, 255, 255, 0.5);
 }

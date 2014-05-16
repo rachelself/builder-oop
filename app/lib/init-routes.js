@@ -31,7 +31,7 @@ function load(app, fn){
   app.put('/trees/:treeId/chop', dbg, trees.chop);
   app.put('/users/:userId/sellwood', dbg, users.sellWood);
   app.get('/users/:userId', dbg, users.dashboard);
-  app.put('/users/:userId/purchase/autogrow', dbg, users.autogrow);
+  app.put('/users/:userId/purchase/:item', dbg, users.purchase);
 
   console.log('Routes Loaded');
   fn();

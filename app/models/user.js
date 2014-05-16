@@ -27,12 +27,13 @@ class User{
   purchase(item){
     if(item.cost <= this.cash){
       this.cash -= item.cost;
-      this.items.push(item._id);
+      this.items.push(item);
     }
   }
 
   get isEligibleForAutoGrow(){
-    return this.cash >= 50000;
+    var isPresent = _(this.items).any(i=>i.type === 'autogrow');
+    return (this.cash >= 50000) && (!isPresent);
   }
 
   static findByUserId(userId, fn){

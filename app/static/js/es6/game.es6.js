@@ -1,5 +1,13 @@
 /* jshint unused:false */
 
+var audioChop, audioBeanStalk;
+
+function ajax(url, type, data={}, success=r=>console.log(r), dataType='html')  // outside means this fn is global
+{
+  'use strict';
+  $.ajax({url:url, type:type, dataType:dataType, data:data, success:success});
+}
+
 (function(){
   'use strict';
 
@@ -17,16 +25,15 @@
     preloadAssets();
   }
 
+
   function purchaseAutoGrow()
   {
-    var userId = $('#user').attr('data-id');
+    var userId = $('#user > p').attr('data-id');
     ajax(`/users/${userId}/purchase/autogrow`, 'put', null, h=>{
       $('#dashboard').empty().append(h);
     });
 
   }
-
-  var audioChop, audioBeanStalk;
 
   function preloadAssets()
   {
@@ -38,7 +45,7 @@
 
   function sellWood()
   {
-    var userId = $('#user').attr('data-id');
+    var userId = $('#user > p').attr('data-id');
     var amount = $('#wood-amount').val();
     ajax(`/users/${userId}/sellwood`, 'put', {amount:amount}, h=>{
       $('#dashboard').empty().append(h);
@@ -50,19 +57,16 @@
     var tree = $(this).closest('.tree');
     var treeId = tree.attr('data-id');
     ajax(`/trees/${treeId}/chop`, 'put', null, h => {
-      // console.log(r.tree);
-      // console.log(r.user);
 
       tree.replaceWith(h);
       dashboard();
-      //checkClass(treeId);
 
     });
   }
 
   function dashboard()
   {
-    var userId = $('#user').attr('data-id');
+    var userId = $('#user > p').attr('data-id');
       ajax(`/users/${userId}`, 'get', null, h=>{
         $('#dashboard').empty().append(h);
       });
@@ -76,24 +80,12 @@
       if($(h).hasClass('beanstalk')){
         audioBeanStalk.play();
       }
-    //  checkClass(treeId);
     });
   }
 
-  // function checkClass(treeId)
-  // {
-  //
-  //   var tree = $(`.tree[data-id=${treeId}]`);
-  //
-  //   if($(tree).hasClass('chopped')){
-  //     tree.removeClass('seed');
-  //     alert('removed');
-  //   }
-  // }
-
   function forest()
   {
-    var userId = $('#user').attr('data-id');
+    var userId = $('#user > p').attr('data-id');
     ajax(`/trees?userId=${userId}`, 'get', null, h=>{
       $('#forest').empty().append(h);
     });
@@ -110,20 +102,13 @@
     });
   }
 
-  function ajax(url, type, data={}, success=r=>console.log(r), dataType='html')
-  {
-    $.ajax({url:url, type:type, dataType:dataType, data:data, success:success});
-  }
-
   function plant()
   {
-    var userId = $('#user').attr('data-id');  // this is preferred so it doesn't cache the other logged in user
+    var userId = $('#user > p').attr('data-id');  // this is preferred so it doesn't cache the other logged in user
     ajax('/trees/plant', 'post', {userId:userId}, h =>{
       $('#forest').append(h);
     });
 
   }
-
-
 
 })();
