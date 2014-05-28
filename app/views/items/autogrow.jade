@@ -1,2 +1,11 @@
 #autoGrowing.item(data-type=item.type, style='background-image:url(#{item.image})')
-script(src='/js/es6/compiled/autogrow.js')
+#range-slider-container
+  h6 AutoGrow
+  #range-slider
+  span.chopheight Chop Height (ft):
+  input#range-output(type='text')
+
+
+block scripts
+  script(src='/js/vendor/jquery.nouislider.min.js')
+  script(src='/js/es6/compiled/autogrow.js')

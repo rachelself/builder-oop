@@ -24,11 +24,11 @@ class Tree{
   }
 
   get isChoppable(){
-    return this.isAdult && this.isHealthy && !this.isBeanStalk;
+    return this.isAdult && this.isHealthy && !this.isBeanStalk && !this.isChopped;
   }
 
   get isGrowable(){
-    return this.isHealthy && !this.isBeanStalk;
+    return this.isHealthy && !this.isBeanStalk && !this.isChopped;
   }
 
   get isBeanStalk(){
@@ -83,7 +83,7 @@ class Tree{
       classes.push('alive');
     }
 
-    if(!this.isHealthy){
+    if(!this.isHealthy || this.isChopped){
       classes.push('dead');
     }
 

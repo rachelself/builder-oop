@@ -30,8 +30,11 @@ function load(app, fn){
   app.put('/trees/:treeId/grow', dbg, trees.grow);
   app.put('/trees/:treeId/chop', dbg, trees.chop);
   app.put('/users/:userId/sellwood', dbg, users.sellWood);
+  app.get('/users/:userId/items', dbg, users.items);
   app.get('/users/:userId', dbg, users.dashboard);
   app.put('/users/:userId/purchase/:item', dbg, users.purchase);
+  // app.get('/users/:userId'  `/users?userId=${userId}`)
+  app.put('/trees/:treeId/destroy', dbg, trees.destroy);
 
   console.log('Routes Loaded');
   fn();

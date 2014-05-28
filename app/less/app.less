@@ -9,7 +9,7 @@ body{
   //background-attachment: fixed;
 }
 
-#forest{
+#forest, #house{
   //background-color: rgba(255, 255, 255, 0.5);
   border-radius: 5px;
   margin: 0 auto;
@@ -64,6 +64,14 @@ h6{
   // height: 100px;
   // padding: 20px;
   // display: inline-block;
+}
+
+#menu{
+  position: relative;
+  top: 52px;
+  height: 50px;
+  width: 100%;
+  background-color: black;
 }
 
 #user{
@@ -122,21 +130,11 @@ h6{
   display: block
 }
 
-#plant, #getforest, #sell, #login{
+#plant, #getforest, #sell, #login, .purchase, #showPossessions, #getForest{
   width: 80px;
   text-transform: capitalize;
   padding-left: 5px;
   padding-right: 5px;
-}
-
-#plant{
-  position: absolute;
-  left: 1160px;
-}
-
-#getforest{
-  position: absolute;
-  left: 1260px;
 }
 
 #sell{
@@ -144,10 +142,25 @@ h6{
   top: 0px;
 }
 
+#plant{
+  position: absolute;
+  left: 1080px;
+}
+
+#showPossessions{
+  position: absolute;
+  left: 1193px;
+}
+
+#getForest{
+  position: absolute;
+  left: 1300px;
+}
+
 
 #sell-wood{
   position: absolute;
-  left: 770px;
+  left: 690px;
 
 }
 
@@ -272,7 +285,7 @@ h6{
   left: 0;
   background-color: rgba(0, 0, 0, 0.7);
   width: 100%;
-  height: 80px;
+  height: 150px;
   // padding: 20px;
   // display: inline-block;
 
@@ -300,31 +313,49 @@ h6{
   top: -5px;
 }
 
-// #items a{
-//   text-decoration: none;
-//
-// }
-
 .autogrow{
   background-image: url(/img/autogrow-2.png);
   background-size: cover;
-  width: 32px;
-  height: 100%;
+  width: 64px;
+  height: 64px;
   border: 0;
   cursor: pointer;
 }
 
-#badges{
-  width: 32px;
-  height: 32px;
+.autoseed{
+  background-image: url(/img/autoseed.png);
+  background-size: cover;
+  width: 64px;
+  height: 64px;
+  border: 0;
+  cursor: pointer;
+}
+
+.autoroot{
+  background-image: url(/img/autoroot-2.png);
+  background-size: cover;
+  width: 64px;
+  height: 64px;
+  border: 0;
+  cursor: pointer;
+}
+
+
+#store{
+  width: 150px;
+  height: 100px;
   position: absolute;
-  top: 70px;
-  left: 0px;
+  top: 50px;
+  left: -80px;
   z-index: 2;
 }
 
+// .itemcontainer{
+//   border: 1px solid orange;
+//   padding: 2px;
+// }
+
 #autoGrowing{
-  background-image: url(/img/antplant.gif);
   background-size: cover;
   width: 100px;
   height: 64px;
@@ -336,12 +367,87 @@ h6{
   margin: 10px;
   cursor: pointer;
   position: relative;
-  left: -200px;
-  top: -5px;
+  left: -150px;
+  top: 20px;
+  z-index: 1;
   padding: 2px;
+  //margin-bottom: 15px;
+}
+
+#autoSeeding{
+  background-size: cover;
+  width: 100px;
+  height: 70%;
+  vertical-align: center;
+  border: none;
+  border: 0;
+  text-decoration: none;
+  float: left;
+  margin: 10px;
+  margin-left: 20px;
+  cursor: pointer;
+  position: relative;
+  left: 0px;
+  top: -90px;
+  z-index: 1;
+  padding: 2px;
+  margin-bottom: 15px;
+}
+
+#autoRooting{
+  background-size: cover;
+  width: 100px;
+  height: 70%;
+  vertical-align: center;
+  border: none;
+  border: 0;
+  text-decoration: none;
+  float: left;
+  margin: 10px;
+  margin-left: 20px;
+  cursor: pointer;
+  position: relative;
+  left: -10px;
+  top: -90px;
+  z-index: 1;
+  padding: 2px;
+  margin-bottom: 15px;
 }
 
 .on{
   border: 1px solid orange !important;
   background-color: rgba(255, 255, 255, 0.5);
+}
+
+#range-slider-container{
+  width: 150px;
+  height: 100px;
+  // background-color: rgba(255, 255, 255, 0.53);
+  position: relative;
+  top: -70px;
+  left: 390px;
+}
+
+.chopheight{
+  font-size: 12px;
+  color: white
+}
+
+input#range-output{
+  width: 100px;
+  height: 20px;
+  padding: 2px;
+  color: black;
+}
+
+#range-slider{
+  position: relative;
+  top: 80px;
+
+}
+
+.house{
+  width: 200px;
+  height: 100px;
+
 }

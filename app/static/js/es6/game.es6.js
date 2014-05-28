@@ -8,6 +8,15 @@ function ajax(url, type, data={}, success=r=>console.log(r), dataType='html')  /
   $.ajax({url:url, type:type, dataType:dataType, data:data, success:success});
 }
 
+function dashboard()
+{
+  'use strict';
+  var userId = $('#user > p').attr('data-id');
+    ajax(`/users/${userId}`, 'get', null, h=>{
+      $('#dashboard').empty().append(h);
+    });
+}
+
 (function(){
   'use strict';
 
@@ -18,21 +27,62 @@ function ajax(url, type, data={}, success=r=>console.log(r), dataType='html')  /
     $('#login').click(login);
     $('#dashboard').on('click', '#plant', plant);
     $('#dashboard').on('click', '#getforest', forest);
+    //$('#dashboard').on('click', '#showPossessions', possessions);
     $('#forest').on('click', '.grow', grow);
     $('#forest').on('click', '.chop', chop);
     $('#dashboard').on('click', '#sell', sellWood);
-    $('#dashboard').on('click', '.autogrow', purchaseAutoGrow);
+    $('#dashboard').on('click', '.autogrow+.purchase', purchaseAutoGrow);
+    $('#dashboard').on('click', '.autoseed+.purchase', purchaseAutoSeed);
+    $('#dashboard').on('click', '.autoroot+.purchase', purchaseAutoRoot);
+
     preloadAssets();
+    $('showPossessions').hide();
   }
 
+  // function possessions()
+  // {
+  //   $('#forest').fadeOut('slow');
+  //   $('#possessions').fadeIn('slow');
+  //
+  //   var userId = $('#user > p').attr('data-id');
+  //   ajax(`/users?userId=${userId}`, 'get', null, h=>{
+  //
+  //     $('#possessions').empty().append(h);
+  //
+  //   });
+  // }
+
+  function purchaseAutoRoot()
+  {
+    var userId = $('#user > p').attr('data-id');
+    ajax(`/users/${userId}/purchase/autoroot`, 'put', null, h=>{
+
+      $('#dashboard').empty().append(h);
+      items();
+
+    });
+  }
 
   function purchaseAutoGrow()
   {
     var userId = $('#user > p').attr('data-id');
     ajax(`/users/${userId}/purchase/autogrow`, 'put', null, h=>{
-      $('#dashboard').empty().append(h);
-    });
 
+      $('#dashboard').empty().append(h);
+      items();
+
+    });
+  }
+
+  function purchaseAutoSeed()
+  {
+    var userId = $('#user > p').attr('data-id');
+    ajax(`/users/${userId}/purchase/autoseed`, 'put', null, h=>{
+
+      $('#dashboard').empty().append(h);
+      items();
+
+    });
   }
 
   function preloadAssets()
@@ -64,13 +114,6 @@ function ajax(url, type, data={}, success=r=>console.log(r), dataType='html')  /
     });
   }
 
-  function dashboard()
-  {
-    var userId = $('#user > p').attr('data-id');
-      ajax(`/users/${userId}`, 'get', null, h=>{
-        $('#dashboard').empty().append(h);
-      });
-  }
 
   function grow(){
     var tree = $(this).closest('.tree');
@@ -85,9 +128,19 @@ function ajax(url, type, data={}, success=r=>console.log(r), dataType='html')  /
 
   function forest()
   {
+    $('#possessions').fadeOut('slow');
+    $('#forest').fadeIn('slow');
     var userId = $('#user > p').attr('data-id');
     ajax(`/trees?userId=${userId}`, 'get', null, h=>{
       $('#forest').empty().append(h);
+    });
+  }
+
+  function items()
+  {
+    var userId = $('#user > p').attr('data-id');
+    ajax(`/users/${userId}/items`, 'get', null, h=>{
+      $('#items').empty().append(h);
     });
   }
 
@@ -98,7 +151,8 @@ function ajax(url, type, data={}, success=r=>console.log(r), dataType='html')  /
       $('#dashboard').empty().append(h);
       $('#cash').prepend('$');
       $('#username').val('');
-      // $('#user').prepend('USER:   ');
+      forest();
+      items();
     });
   }
 

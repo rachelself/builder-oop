@@ -10,6 +10,10 @@ class User{
     this.wood = 0;
     this.cash = 0;
     this.items = [];
+    this.house = {
+      type: 'none',
+      upgrades: [],
+    };
   }
 
   save(fn){
@@ -35,6 +39,17 @@ class User{
     var isPresent = _(this.items).any(i=>i.type === 'autogrow');
     return (this.cash >= 50000) && (!isPresent);
   }
+
+  get isEligibleForAutoSeed(){
+    var isPresent = _(this.items).any(i=>i.type === 'autoseed');
+    return (this.cash >= 75000) && (!isPresent);
+  }
+
+  get isEligibleForAutoRoot(){
+    var isPresent = _(this.items).any(i=>i.type === 'autoroot');
+    return (this.cash >= 85000) && (!isPresent);
+  }
+
 
   static findByUserId(userId, fn){
     if(typeof(userId) === 'string'){
